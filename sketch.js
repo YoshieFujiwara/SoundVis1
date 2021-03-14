@@ -6,7 +6,7 @@ var amp;
 var volHistory = [];
 
 function setup() {
-  createCanvas(600, 400);
+  createCanvas(800, 600);
 
   //sounds
   oceanWave = loadSound('/sounds/water-waves.mp3', loaded);
