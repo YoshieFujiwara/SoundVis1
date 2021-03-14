@@ -9,7 +9,7 @@ function setup() {
   createCanvas(600, 400);
 
   //sounds
-  oceanWave = loadSound('/sounds/water-waves.mp3', loaded);
+  oceanWave = loadSound('/sounds/heart-beat.mp3', loaded);
   slider = createSlider(0, 1, 0.5, 0.01);
   amp = new p5.Amplitude();
 }
@@ -34,25 +34,32 @@ function togglePlaying() {
 
 //images
 function draw() {
-  background(100, 170, 225);
+  background('#fae');
   vol = amp.getLevel() * 10;
   //console.log('vol', vol);
   volHistory.push(vol);
-  stroke(255);
+  stroke(200, 0, 0);
+  strokeWeight(1);
+  fill(255, 30, 100);
+
+  translate(width / 2, height / 2);
 
   beginShape();
 
-  for (let i = 0; i < volHistory.length; i++) {
-    let y = map(volHistory[i], 0, 1, height / 2, 0);
+  for (let i = 0; i < 360; i++) {
+    let r = map(volHistory[i], 0, 1, 10, 100);
+    let x = r * cos(i);
+    let y = r * sin(i);
 
-    vertex(i, y);
+    //let y = map(volHistory[i], 0, 1, height / 2, 0);
+    vertex(x, y);
   }
 
   endShape();
 
-  if (volHistory.length > width) {
-    volHistory.splice(0, 1);
+  if (volHistory.length > 120) {
+    volHistory.splice(0, 100);
   }
 
-  frameRate(60);
+  frameRate(25);
 }
