@@ -10,17 +10,19 @@ function setup() {
   mic = new p5.AudioIn();
   //start the Audio Input.
   mic.start();
-}
 
-// play button
+  // start/stop button
+  button = createButton('start');
+
+  //button.mouseClicked(toggleMic);
+}
 
 //images
 function draw() {
   background(220);
 
   //get overaaaaaaddllVolume
-  vol = mic.getLevel() * 100;
-  //console.log('vol', vol);
+  vol = mic.getLevel() * 150;
 
   fill(255);
   stroke(0);
